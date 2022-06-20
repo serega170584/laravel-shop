@@ -1,9 +1,10 @@
 <?php
 
-namespace Database\Factories;
+namespace database\factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use function now;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
