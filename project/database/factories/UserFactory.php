@@ -11,6 +11,8 @@ use function now;
  */
 class UserFactory extends Factory
 {
+    protected $model = 'App\Models\User';
+
     /**
      * Define the model's default state.
      *
