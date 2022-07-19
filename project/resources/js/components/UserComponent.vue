@@ -37,6 +37,9 @@
                         <div class="md-form mb-5">
                             <input type="email" class="form-control" placeholder="E-mail" :value="user.email" disabled>
                         </div>
+                        <div class="md-form mb-5">
+                            <input type="email" class="form-control" placeholder="Birthday" :value="user.birthday" disabled>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary">Save changes</button>
@@ -64,9 +67,6 @@ export default {
     },
     beforeUpdate() {
         this.count = 0;
-    },
-    updated() {
-
     },
     data: function () {
         return {
