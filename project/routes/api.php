@@ -39,7 +39,7 @@ Route::middleware('auth:sanctum')->put('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->get('/product', function (Request $request) {
-    return \App\Models\User::all();
+    return \App\Models\Product::all();
 });
 Route::middleware('auth:sanctum')->post('/product', function (Request $request) {
     $request->validate([
