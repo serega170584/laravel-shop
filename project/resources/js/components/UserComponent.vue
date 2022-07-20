@@ -38,11 +38,11 @@
                             <input type="email" class="form-control" placeholder="E-mail" :value="user.email" disabled>
                         </div>
                         <div class="md-form mb-5">
-                            <input type="email" class="form-control" placeholder="Birthday" :value="user.birthday" disabled>
+                            <input type="email" class="form-control" placeholder="Birthday" name="birthday" v-model="user.birthday">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-primary" @click="save(user)">Save changes</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="showModal=false">Close</button>
                     </div>
                 </div>
@@ -80,6 +80,12 @@ export default {
         edit: function (id) {
             this.showModal = true;
             this.user = this.data.filter(item => item.id === id).pop();
+        },
+        save: function (user) {
+            this.showModal =false;
+            axios
+                .post('http://localhost:3900/api/user', user)
+                .then(response => (console.log(response)));
         }
     }
 }
