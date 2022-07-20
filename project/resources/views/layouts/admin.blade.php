@@ -7,7 +7,7 @@
                 <div class="card">
                     <nav class="nav flex-column">
                         <a class="nav-link" href="/user">Users</a>
-                        <a class="nav-link" href="#">Products</a>
+                        <a class="nav-link" href="/product">Products</a>
                     </nav>
                 </div>
             </div>
