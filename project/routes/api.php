@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return \App\Models\User::all();
 });
-Route::middleware('auth:sanctum')->post('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->put('/user', function (Request $request) {
     $request->validate([
             'birthday' => 'max:255'
         ]
@@ -35,4 +36,28 @@ Route::middleware('auth:sanctum')->post('/user', function (Request $request) {
     }
     $user->setAttribute('birthday', $birthday);
     $user->save();
+});
+
+Route::middleware('auth:sanctum')->get('/product', function (Request $request) {
+    return \App\Models\User::all();
+});
+Route::middleware('auth:sanctum')->post('/product', function (Request $request) {
+    $request->validate([
+            'title' => 'max:255|required',
+            'description' => 'required'
+        ]
+    );
+    $id = $request->input('id');
+    $title = $request->input('title');
+    $description = $request->input('description');
+    /**
+     * @var Product $product
+     */
+    $product = Product::where('id', $id)->first();
+    if (null === $id) {
+        new NotFoundHttpException();
+    }
+    $product->setAttribute('title', $title);
+    $product->setAttribute('description', $description);
+    $product->save();
 });

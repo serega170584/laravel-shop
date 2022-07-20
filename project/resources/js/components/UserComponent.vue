@@ -84,7 +84,7 @@ export default {
         save: function (user) {
             this.showModal =false;
             axios
-                .post('http://localhost:3900/api/user', user)
+                .put('http://localhost:3900/api/user', user)
                 .then(response => (console.log(response)));
         }
     }

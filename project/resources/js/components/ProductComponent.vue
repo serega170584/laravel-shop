@@ -10,6 +10,10 @@
             </thead>
             <tbody>
             <tr v-for="item in data">
+                <td colspan="3">{{item.title}}</td>
+                <td><a class="btn btn-primary" href="#" @click="create()">Create</a></td>
+            </tr>
+            <tr v-for="item in data">
                 <th scope="row">{{ ++count }}</th>
                 <td>{{item.title}}</td>
                 <td>
@@ -83,6 +87,10 @@ export default {
             axios
                 .post('http://localhost:3900/api/product', product)
                 .then(response => (console.log(response)));
+        },
+        create: function () {
+            this.showModal = true;
+            this.product = {};
         }
     }
 }
