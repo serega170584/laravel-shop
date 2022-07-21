@@ -33,7 +33,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="md-form mb-5">
-                            <input type="text" class="form-control" placeholder="Name" :value="product.title" disabled>
+                            <input type="text" class="form-control" placeholder="Title" v-model="product.title">
                         </div>
                         <div class="md-form mb-5">
                             <textarea class="form-control" placeholder="Description" name="description" v-model="product.description">
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" @click="save(product)">Save changes</button>
+                        <button type="button" class="btn btn-primary" @click="saveFunction()">Save changes</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="showModal=false">Close</button>
                     </div>
                 </div>
@@ -73,7 +73,8 @@ export default {
             showModal: false,
             data: [],
             count: 0,
-            product: {}
+            product: {},
+            saveFunction: this.saveCreate
         }
     },
     methods: {
@@ -81,15 +82,30 @@ export default {
             this.showModal = true;
             this.product = this.data.filter(item => item.id === id).pop();
         },
-        save: function (product) {
+        save: function () {
             this.showModal =false;
             axios
-                .put('http://localhost:3900/api/product', product)
+                .put('http://localhost:3900/api/product', this.product)
                 .then(response => (console.log(response)));
         },
         create: function () {
             this.showModal = true;
             this.product = {};
+        },
+        saveCreate: function () {
+            this.showModal =false;
+            this.requestCreate();
+        },
+        requestCreate: async function () {
+            await axios
+                .post('http://localhost:3900/api/product', this.product)
+                .then(response => (console.log(response)))
+                .catch(function(error) {
+                    console.log(error);
+                });
+            axios
+                .get('http://localhost:3900/api/product')
+                .then(response => (this.data = response.data));
         }
     }
 }

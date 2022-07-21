@@ -47,6 +47,19 @@ Route::middleware('auth:sanctum')->post('/product', function (Request $request) 
             'description' => 'required'
         ]
     );
+    $title = $request->input('title');
+    $description = $request->input('description');
+    $product = new Product();
+    $product->setAttribute('title', $title);
+    $product->setAttribute('description', $description);
+    $product->save();
+});
+Route::middleware('auth:sanctum')->put('/product', function (Request $request) {
+    $request->validate([
+            'title' => 'max:255|required',
+            'description' => 'required'
+        ]
+    );
     $id = $request->input('id');
     $title = $request->input('title');
     $description = $request->input('description');
