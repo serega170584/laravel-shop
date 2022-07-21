@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" @click="save(user)">Save changes</button>
+                        <button type="button" class="btn btn-primary" @click="saveFunction()">Save changes</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="showModal=false">Close</button>
                     </div>
                 </div>
@@ -73,19 +73,33 @@ export default {
             showModal: false,
             data: [],
             count: 0,
-            user: {}
+            user: {},
+            saveFunction: this.saveEdit
         }
     },
     methods: {
         edit: function (id) {
             this.showModal = true;
             this.user = this.data.filter(item => item.id === id).pop();
+            this.saveFunction = this.saveEdit;
         },
-        save: function (user) {
+        saveEdit: function () {
             this.showModal =false;
+            this.requestEdit();
+        },
+        requestEdit: async function () {
+            await axios
+                .put('http://localhost:3900/api/user', this.user)
+                .then(response => (console.log(response)))
+                .catch(function(error) {
+                    console.log(error);
+                });
             axios
-                .put('http://localhost:3900/api/user', user)
-                .then(response => (console.log(response)));
+                .get('http://localhost:3900/api/user')
+                .then(response => (this.data = response.data))
+                .catch(function(error) {
+                    console.log(error);
+                });
         }
     }
 }

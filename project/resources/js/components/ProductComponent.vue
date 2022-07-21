@@ -95,7 +95,10 @@ export default {
                 });
             axios
                 .get('http://localhost:3900/api/product')
-                .then(response => (this.data = response.data));
+                .then(response => (this.data = response.data))
+                .catch(function(error) {
+                    console.log(error);
+                });
         },
         edit: function (id) {
             this.showModal = true;
@@ -115,7 +118,10 @@ export default {
                 });
             axios
                 .get('http://localhost:3900/api/product')
-                .then(response => (this.data = response.data));
+                .then(response => (this.data = response.data))
+                .catch(function(error) {
+                    console.log(error);
+                });
         },
     }
 }
