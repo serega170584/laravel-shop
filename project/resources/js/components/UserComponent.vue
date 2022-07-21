@@ -58,10 +58,10 @@ export default {
         console.log('Component mounted.');
         this.data = [];
         axios
-            .get('http://localhost:3900/sanctum/csrf-cookie')
+            .get(window.baseUrl + '/sanctum/csrf-cookie')
             .then(response => (console.log(response)));
         axios
-            .get('http://localhost:3900/api/user')
+            .get(this.baseUrl)
             .then(response => (this.data = response.data));
         this.count = 0;
     },
@@ -74,7 +74,8 @@ export default {
             data: [],
             count: 0,
             user: {},
-            saveFunction: this.saveEdit
+            saveFunction: this.saveEdit,
+            baseUrl: window.baseUrl + '/user'
         }
     },
     methods: {
@@ -89,13 +90,13 @@ export default {
         },
         requestEdit: async function () {
             await axios
-                .put('http://localhost:3900/api/user', this.user)
+                .put(this.baseUrl, this.user)
                 .then(response => (console.log(response)))
                 .catch(function(error) {
                     console.log(error);
                 });
             axios
-                .get('http://localhost:3900/api/user')
+                .get(this.baseUrl)
                 .then(response => (this.data = response.data))
                 .catch(function(error) {
                     console.log(error);

@@ -58,12 +58,13 @@ export default {
         console.log('Component mounted.');
         this.data = [];
         axios
-            .get('http://localhost:3900/sanctum/csrf-cookie')
+            .get(window.baseUrl + '/sanctum/csrf-cookie')
             .then(response => (console.log(response)));
         axios
-            .get('http://localhost:3900/api/product')
+            .get(this.baseUrl)
             .then(response => (this.data = response.data));
         this.count = 0;
+        console.log(window.a);
     },
     beforeUpdate() {
         this.count = 0;
@@ -74,7 +75,8 @@ export default {
             data: [],
             count: 0,
             product: {},
-            saveFunction: this.saveCreate
+            saveFunction: this.saveCreate,
+            baseUrl: window.baseUrl + '/product'
         }
     },
     methods: {
@@ -88,13 +90,13 @@ export default {
         },
         requestCreate: async function () {
             await axios
-                .post('http://localhost:3900/api/product', this.product)
+                .post(this.baseUrl, this.product)
                 .then(response => (console.log(response)))
                 .catch(function(error) {
                     console.log(error);
                 });
             axios
-                .get('http://localhost:3900/api/product')
+                .get(this.baseUrl)
                 .then(response => (this.data = response.data))
                 .catch(function(error) {
                     console.log(error);
@@ -111,13 +113,13 @@ export default {
         },
         requestEdit: async function () {
             await axios
-                .put('http://localhost:3900/api/product', this.product)
+                .put(this.baseUrl, this.product)
                 .then(response => (console.log(response)))
                 .catch(function(error) {
                     console.log(error);
                 });
             axios
-                .get('http://localhost:3900/api/product')
+                .get(this.baseUrl)
                 .then(response => (this.data = response.data))
                 .catch(function(error) {
                     console.log(error);
