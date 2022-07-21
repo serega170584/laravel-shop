@@ -58,7 +58,7 @@ export default {
         console.log('Component mounted.');
         this.data = [];
         axios
-            .get(window.baseUrl + '/sanctum/csrf-cookie')
+            .get(window.baseSanctumCsrfUrl)
             .then(response => (console.log(response)));
         axios
             .get(this.baseUrl)

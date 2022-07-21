@@ -3,6 +3,7 @@
 @section('content')
     <script>
         window.baseUrl = 'http://localhost:3900/api';
+        window.baseSanctumCsrfUrl = 'http://localhost:3900/sanctum/csrf-cookie';
     </script>
     <div class="container">
         <div class="row justify-content-center">
