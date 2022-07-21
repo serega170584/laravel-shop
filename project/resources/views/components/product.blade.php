@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
 @section('component')
-    <user-component />
+    <product-component />
 @endsection
 
