@@ -78,16 +78,6 @@ export default {
         }
     },
     methods: {
-        edit: function (id) {
-            this.showModal = true;
-            this.product = this.data.filter(item => item.id === id).pop();
-        },
-        save: function () {
-            this.showModal =false;
-            axios
-                .put('http://localhost:3900/api/product', this.product)
-                .then(response => (console.log(response)));
-        },
         create: function () {
             this.showModal = true;
             this.product = {};
@@ -106,7 +96,27 @@ export default {
             axios
                 .get('http://localhost:3900/api/product')
                 .then(response => (this.data = response.data));
-        }
+        },
+        edit: function (id) {
+            this.showModal = true;
+            this.product = this.data.filter(item => item.id === id).pop();
+            this.saveFunction = this.saveEdit;
+        },
+        saveEdit: function () {
+            this.showModal =false;
+            this.requestEdit();
+        },
+        requestEdit: async function () {
+            await axios
+                .put('http://localhost:3900/api/product', this.product)
+                .then(response => (console.log(response)))
+                .catch(function(error) {
+                    console.log(error);
+                });
+            axios
+                .get('http://localhost:3900/api/product')
+                .then(response => (this.data = response.data));
+        },
     }
 }
 </script>
