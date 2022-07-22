@@ -16,7 +16,6 @@
                     <td>{{item.email}}</td>
                     <td>
                         <a class="btn btn-primary" href="#" @click="edit(item.id)">Edit</a>
-                        <a class="btn btn-primary" href="#">Delete</a>
                     </td>
                 </tr>
             </tbody>
