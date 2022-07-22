@@ -2,8 +2,8 @@
 
 @section('content')
     <script>
-        window.baseUrl = 'http://localhost:3900/api';
-        window.baseSanctumCsrfUrl = 'http://localhost:3900/sanctum/csrf-cookie';
+        window.baseUrl = '<?= config('app.api_base_url') ?>';
+        window.baseSanctumCsrfUrl = '<?= config('app.base_sanctum_csrf_url') ?>';
     </script>
     <div class="container">
         <div class="row justify-content-center">

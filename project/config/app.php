@@ -212,4 +212,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    'api_base_url' => env('API_BASE_URL'),
+
+    'base_sanctum_csrf_url' => env('BASE_SANCTUM_CSRF_URL'),
 ];
