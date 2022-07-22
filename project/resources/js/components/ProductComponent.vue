@@ -4,7 +4,7 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Title</th>
+                <th scope="col">{{ titleLabel }}</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>
@@ -14,7 +14,7 @@
             </tr>
             <tr v-for="item in data">
                 <th scope="row">{{ ++count }}</th>
-                <td>{{item.title}}</td>
+                <td>{{ item.title }}</td>
                 <td>
                     <a class="btn btn-primary" href="#" @click="edit(item.id)">Edit</a>
                     <a class="btn btn-primary" href="#">Delete</a>
@@ -64,7 +64,6 @@ export default {
             .get(this.baseUrl)
             .then(response => (this.data = response.data));
         this.count = 0;
-        console.log(window.a);
     },
     beforeUpdate() {
         this.count = 0;
@@ -76,7 +75,12 @@ export default {
             count: 0,
             product: {},
             saveFunction: this.saveCreate,
-            baseUrl: window.baseUrl + '/product'
+            baseUrl: window.baseUrl + '/product',
+            titleLabel: window.titleLabel,
+            actionLabel: window.actionLabel,
+            createLabel: window.createLabel,
+            editLabel: window.editLabel,
+            deleteLabel: window.deleteLabel,
         }
     },
     methods: {

@@ -74,7 +74,12 @@ export default {
             count: 0,
             user: {},
             saveFunction: this.saveEdit,
-            baseUrl: window.baseUrl + '/user'
+            baseUrl: window.baseUrl + '/user',
+            titleLabel: window.titleLabel,
+            actionLabel: window.actionLabel,
+            createLabel: window.createLabel,
+            editLabel: window.editLabel,
+            deleteLabel: window.deleteLabel,
         }
     },
     methods: {
